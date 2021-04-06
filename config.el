@@ -56,3 +56,4 @@
 
 ;; I defined this myself =)
 (windmove-default-keybindings)
+(centaur-tabs-mode f) ;; disable tabs mode on startup
