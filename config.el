@@ -1,5 +1,5 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-
+(require 'ediprolog)
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
@@ -25,7 +25,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-spacegrey) ;;doom-ephemeral doom-material doom-spacegrey doom-vibrant doom-challenger-deep
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -56,4 +56,11 @@
 
 ;; I defined this myself =)
 (windmove-default-keybindings)
-(centaur-tabs-mode f) ;; disable tabs mode on startup
+(setq ein:output-area-inlined-images t)
+;;(centaur-tabs-mode)
+(after! ediprolog
+      (setq prolog-system 'swi
+            prolog-program-switches '((swi ("-G128M" "-T128M" "-L128M" "-O"))
+                                      (t nil))
+            ediprolog-program "/usr/bin/swipl"
+            prolog-electric-if-then-else-flag t))

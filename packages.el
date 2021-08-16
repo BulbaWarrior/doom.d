@@ -51,3 +51,4 @@
 
 (package! evil-tutor)
 (package! jupyter)
+(package! ediprolog)
