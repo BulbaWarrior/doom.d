@@ -1,5 +1,5 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-(require 'ediprolog)
+;;(require 'ediprolog)
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
@@ -7,7 +7,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Vladislav Kalmykov"
-      user-mail-address "vladkalm49@gmail.com")
+      user-mail-address "v.kalmykov@tinkoff.ru")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -25,8 +25,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-spacegrey) ;;doom-ephemeral doom-material doom-spacegrey doom-vibrant doom-challenger-deep
-
+(setq doom-theme 'doom-material) ;;doom-ephemeral doom-material doom-spacegrey doom-vibrant doom-challenger-deep
+(setq doom-font (font-spec :family "Andale Mono" :size 18))
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
@@ -55,6 +55,16 @@
 ;;
 
 ;; I defined this myself =)
+
+;; terminal-like C-w behavior
+(defun kill-region-or-backward-word ()
+  "If the region is active and non-empty, call `kill-region'.
+Otherwise, call `backward-kill-word'."
+  (interactive)
+  (call-interactively
+   (if (use-region-p) 'kill-region 'backward-kill-word)))
+(map! :g "C-w" 'kill-region-or-backward-word)
+
 (windmove-default-keybindings)
 (setq ein:output-area-inlined-images t)
 ;;(centaur-tabs-mode)
