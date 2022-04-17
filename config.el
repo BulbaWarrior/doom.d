@@ -55,6 +55,10 @@
 ;;
 
 ;; I defined this myself =)
+(map! :n "H" 'evil-window-left)
+(map! :n "J" 'evil-window-down)
+(map! :n "K" 'evil-window-up)
+(map! :n "L" 'evil-window-right)
 
 ;; terminal-like C-w behavior
 (defun kill-region-or-backward-word ()
