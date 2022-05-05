@@ -25,7 +25,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-material) ;;doom-ephemeral doom-material doom-spacegrey doom-vibrant doom-challenger-deep
+(setq doom-theme 'doom-vibrant) ;;doom-ephemeral doom-material doom-spacegrey doom-vibrant doom-challenger-deep
 (setq doom-font (font-spec :family "Andale Mono" :size 18))
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -55,10 +55,10 @@
 ;;
 
 ;; I defined this myself =)
-(map! :n "H" 'evil-window-left)
-(map! :n "J" 'evil-window-down)
-(map! :n "K" 'evil-window-up)
-(map! :n "L" 'evil-window-right)
+(map! :mno "H" 'evil-window-left)
+(map! :mno "J" 'evil-window-down)
+(map! :mno "K" 'evil-window-up)
+(map! :mno "L" 'evil-window-right)
 
 ;; terminal-like C-w behavior
 (defun kill-region-or-backward-word ()
@@ -67,7 +67,7 @@ Otherwise, call `backward-kill-word'."
   (interactive)
   (call-interactively
    (if (use-region-p) 'kill-region 'backward-kill-word)))
-(map! :g "C-w" 'kill-region-or-backward-word)
+(map! :i "C-w" 'kill-region-or-backward-word)
 
 (windmove-default-keybindings)
 (setq ein:output-area-inlined-images t)
