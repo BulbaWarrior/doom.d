@@ -78,3 +78,31 @@ Otherwise, call `backward-kill-word'."
                                       (t nil))
             ediprolog-program "/usr/bin/swipl"
             prolog-electric-if-then-else-flag t))
+
+
+; Nuke poetry tracking mode from orbit
+(advice-add 'poetry-tracking-mode :override (lambda () ()))
+
+(defun custom-reload-venv ()
+  "Update Python Poetry Virtual Environment"
+  (interactive)
+
+  ; Deactivate the current environment
+  (pyvenv-deactivate)
+
+  ; Reset internal poetry configs to trigger a reload of the current project
+  (setq poetry-project-venv nil)
+  (setq poetry-project-root nil)
+  (setq poetry-project-name nil)
+  (setq poetry-saved-venv nil)
+
+  ; Re-deduce our project directory and venv, and activate it.
+  (poetry-venv-workon)
+
+  ; Reload language server to use the new venv
+  (lsp-restart-workspace)
+)
+
+(map! :leader
+      :desc "Update Python Poetry Virtual Environment"
+      "p u" 'custom-reload-venv)
